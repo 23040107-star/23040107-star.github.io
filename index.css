@@ -1,0 +1,239 @@
+:root {
+    --bg-main: linear-gradient(to bottom,#e5e5e5,#043081);
+    --text-color: #111;
+    --card-bg: #ffffff;
+    --player-bg: rgba(255,255,255,0.8);
+    --sidebar-bg: #f0f0f0;
+    --button-bg: #e0e0e0;
+
+}
+    
+    
+    
+    
+    
+    
+    
+    body {
+    margin: 0;
+    font-family: Arial;
+
+    background: linear-gradient(to bottom,#e5e5e5,#043081);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    min-height: 100vh;
+
+    transition: 0.3s;
+}
+
+/*  MODO OSCURO */
+body.dark {
+    background: linear-gradient(to bottom,#121212,#041638);
+    color: white;
+}
+
+/* BOTÓN */
+#menu-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    cursor: pointer;
+    z-index: 1002;
+}
+
+/* OVERLAY */
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 999;
+}
+
+.overlay.active {
+    opacity: 1;
+    pointer-events: all;
+    backdrop-filter: blur(2px);
+}
+
+/* SIDEBAR */
+.sidebar {
+    position: fixed;
+    top: 0;
+    right: -290px;
+    width: 260px;
+    height: 100%;
+    background: #111;
+    padding: 20px;
+    transition: right 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    box-shadow: -5px 0 20px rgba(0,0,0,0.5);
+}
+
+.sidebar.active {
+    right: 0;
+}
+
+.sidebar h2 {
+    color: white;
+}
+
+.sidebar a {
+    color: white;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 8px;
+    margin: 5px 0;
+}
+
+.sidebar a:hover {
+    background: #333;
+}
+
+.sidebar hr {
+    border: 1px solid #333;
+    margin: 15px 0;
+}
+
+/* SWITCH */
+.switch-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.switch {
+    width: 50px;
+    height: 25px;
+    position: relative;
+}
+
+.switch input {
+    display: none;
+}
+
+.slider {
+    position: absolute;
+    background: gray;
+    border-radius: 20px;
+    width: 100%;
+    height: 100%;
+}
+
+.slider::before {
+    content: "";
+    width: 20px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    top: 2px;
+    left: 3px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+input:checked + .slider {
+    background: green;
+}
+
+input:checked + .slider::before {
+    transform: translateX(25px);
+}
+
+
+/* LAYOUT */
+.main {
+    display: flex;
+    padding: 20px;
+}
+
+.left {
+    width: 20%;
+}
+
+.left img {
+    width: 60px;
+    margin: 5px;
+}
+
+.center {
+    width: 60%;
+    text-align: center;
+}
+
+.card {
+    background: black;
+    color: white;
+    padding: 20px;
+}
+
+/* FOOTER */
+
+.footer {
+    background: #111;
+    color: white;
+    margin-top: 80px;
+    padding: 30px 20px;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.footer-section {
+    display: flex;
+    flex-direction: column;
+}
+
+.footer-section h3 {
+    margin-bottom: 10px;
+}
+
+.footer-section a {
+    color: white;
+    text-decoration: none;
+    margin: 5px 0;
+    transition: 0.3s;
+}
+
+.footer-section a:hover {
+    color: #00ff88;
+}
+
+.copy {
+    text-align: center;
+    margin-top: 20px;
+    opacity: 0.7;
+}
+.banner-link{
+    display:block;
+    margin-top:40px;
+}
+
+.banner-img{
+    width:100%;
+    max-width:700px;
+
+    border-radius:15px;
+
+    transition:0.3s;
+
+    box-shadow:0 0 20px rgba(0,0,0,0.4);
+}
+
+.banner-img:hover{
+    transform:scale(1.02);
+}

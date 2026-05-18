@@ -1,0 +1,95 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Brutal Memes</title>
+    <link rel="stylesheet" href="brainrots.css">
+</head>
+<body>
+
+        <h1> 
+            <a href="index.html">
+                <img id="logo"
+                src="indeximg/logonegro.png" alt="">
+            </a>
+            <a href="index.html">Brutal.</a>Math
+        
+        </h1>
+    <!-- BOTÓN MENÚ -->
+<img src="indeximg/menu.png" id="menu-btn" alt="menu">
+
+<!-- OVERLAY -->
+<div id="overlay" class="overlay"></div>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+
+    <audio id="bg-music" loop>
+        <source src="musica/Mii Channel Theme - Wii.mp3" type="audio/mpeg">
+    </audio>
+
+    <h2>Explorar</h2>
+
+    <a href="musicanew.html"> Música</a>
+    <a href="memes.html"> Memes</a>
+    <a href="matatenas.html">Calculadora</a>
+
+    <hr>
+
+    <div class="switch-container">
+        <span>Modo oscuro</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+
+
+</div>
+
+
+    <div class="galeria">
+        <div class="card">
+            <img src="brainrots/img1.jpg" onclick="abrirModal(this)">
+        </div>
+
+        <div class="card">
+            <img src="brainrots/img2.jpg" onclick="abrirModal(this)">
+        </div>
+
+        <div class="card">
+            <img src="brainrots/img 3.jpg" onclick="abrirModal(this)">
+        </div>
+                <div class="card">
+            <img src="brainrots/img4.jpg" onclick="abrirModal(this)">
+
+        </div>
+                <div class="card">
+            <img src="brainrots/img5.jpg" onclick="abrirModal(this)">
+        </div>
+                <div class="card">
+            <img src="brainrots/img6.jpg" onclick="abrirModal(this)">
+        </div>
+                <div class="card">
+            <img src="brainrots/img7.jpg" onclick="abrirModal(this)">
+        </div>
+                <div class="card">
+            <img src="brainrots/img8.jpg" onclick="abrirModal(this)">
+        </div>
+                <div class="card">
+            <img src="brainrots/img9.jpg" onclick="abrirModal(this)">
+        </div>
+                <div class="card">
+            <img src="brainrots/img10.jpg" onclick="abrirModal(this)">
+        </div>
+
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="cerrarModal()">
+        <img id="imagenGrande">
+    </div>
+
+    <script src="brainrots.js"></script>
+</body>
+</html>

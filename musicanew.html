@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Brutal Music</title>
+<script src="https://cdn.jsdelivr.net/npm/jsmediatags@3.9.7/dist/jsmediatags.min.js"></script>
+<link rel="stylesheet" href="musicanew.css">
+</head>
+
+<body>
+
+
+<img src="indeximg/menunegro.png" id="menu-btn" alt="menu">
+
+
+<div id="overlay" class="overlay"></div>
+
+
+<div id="sidebar" class="sidebar">
+
+
+    <h2>Explorar</h2>
+
+    <a href="memes.html"> Memes</a>
+    <a href="brainrots.html"> Brainrot</a>
+    <a href="matatenas.html">Calculadora</a>
+
+    <hr>
+
+    <div class="switch-container">
+        <span>Modo oscuro</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+
+
+</div>
+
+
+<div class="app">
+
+
+
+    <!-- songBar-->
+    <div class="songbar">
+
+        <h1> 
+            <a href="index.html">
+                <img id="logo"
+                src="indeximg/logonegro.png" alt="">
+            </a>
+            <a href="index.html">Brutal.</a>Music
+        
+        </h1>
+
+        <button id="loadFolder">
+            📁 Cargar carpeta
+        </button>
+
+        <input
+            type="text"
+            id="search"
+            placeholder="Buscar canción..."
+        >
+
+        <div id="songList" class="song-list"></div>
+
+    </div>
+
+   
+    <div class="main">
+
+        <div class="player-card">
+
+            <img
+                id="cover"
+                src="indeximg/BRUTALdicnegro.png"
+            >
+
+            <h2 id="title">No hay canción</h2>
+
+            <p id="artist">
+                Selecciona una carpeta
+            </p>
+
+            <!-- VISUALIZER -->
+            <canvas id="visualizer"></canvas>
+
+            <!-- PROGRESO -->
+            <div class="progress-container">
+
+                <span id="currentTime">0:00</span>
+
+                <input
+                    type="range"
+                    id="progress"
+                    value="0"
+                    min="0"
+                    max="100"
+                >
+
+                <span id="duration">0:00</span>
+
+            </div>
+
+            <!-- CONTROLES -->
+            <div class="controls">
+
+                <button id="prev">⏮</button>
+
+                <button id="play">▶</button>
+
+                <button id="next">⏭</button>
+
+            </div>
+            <button id="eqBtn"> EQ</button>
+
+            <!-- VOLUMEN -->
+            <input
+                type="range"
+                id="volume"
+                min="0"
+                max="1"
+                step="0.01"
+                value="0.5"
+            >
+
+        </div>
+    <div id="equalizer" class="equalizer">
+
+    <div>
+        <label>Bass</label>
+        <input type="range" id="Bajos" min="-30" max="30" value="0">
+    </div>
+
+    <div>
+        <label>Mid</label>
+        <input type="range" id="Medios" min="-30" max="30" value="0">
+    </div>
+
+    <div>
+        <label>Treble</label>
+        <input type="range" id="Agudos" min="-30" max="30" value="0">
+    </div>
+    <div>
+        <button id="resetEQ">
+    Reset EQ
+</button>
+    </div>
+
+</div>
+
+    </div>
+
+</div>
+
+<audio id="audio"></audio>
+
+<script src="musicanew.js"></script>
+
+</body>
+</html>

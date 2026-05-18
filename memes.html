@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Brutal Memes</title>
+    <link rel="stylesheet" href="memes.css" />
+  </head>
+  <body>
+    <h1>
+      <a href="index.html">
+        <img id="logo" src="indeximg/logonegro.png" alt="" />
+      </a>
+      <a href="index.html">Brutal.</a>Memes
+    </h1>
+
+    <!-- BOTÓN MENÚ -->
+    <img src="indeximg/menunegro.png" id="menu-btn" alt="menu" />
+
+    <!-- OVERLAY -->
+    <div id="overlay" class="overlay"></div>
+
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar">
+      <audio id="bg-music" loop>
+        <source src="musica/Mii Channel Theme - Wii.mp3" type="audio/mpeg" />
+      </audio>
+
+      <h2>Explorar</h2>
+
+      <a href="musicanew.html"> Música</a>
+      <a href="brainrots.html"> Brainrot</a>
+      <a href="matatenas.html">Calculadora</a>
+
+      <hr />
+
+      <div class="switch-container">
+        <span>Modo oscuro</span>
+        <label class="switch">
+          <input type="checkbox" id="darkModeToggle" />
+          <span class="slider"></span>
+        </label>
+      </div>
+    </div>
+
+    <div class="galeria">
+
+
+      <div class="card">
+        <img src="memes/img2.png" onclick="abrirModal(this)" />
+      </div>
+
+      <div class="card">
+        <img src="memes/img3.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img4.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img5.png" onclick="abrirModal(this)" />
+      </div>
+
+      <div class="card">
+        <img src="memes/img6.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img7.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img8.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img9.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img10.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img12.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img13.png" onclick="abrirModal(this)" />
+      </div>
+      <div class="card">
+        <img src="memes/img14.png" onclick="abrirModal(this)" />
+      </div>
+            <div class="card">
+        <img src="memes/img15.png" onclick="abrirModal(this)" />
+      </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="modal" class="modal" onclick="cerrarModal()">
+      <img id="imagenGrande" />
+    </div>
+
+    <script src="memes.js"></script>
+  </body>
+</html>

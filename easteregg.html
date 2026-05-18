@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Pebble Bailando</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    overflow:hidden;
+    height:100vh;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    background:
+    radial-gradient(
+        circle at top,
+        #3b4454,
+        #1a1d24,
+        #090a0f
+    );
+
+    font-family:sans-serif;
+}
+
+
+
+body::before{
+
+    content:"";
+
+    position:absolute;
+    inset:0;
+
+    background:
+    linear-gradient(
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px
+    ),
+    linear-gradient(
+        90deg,
+        rgba(255,255,255,0.03) 1px,
+        transparent 1px
+    );
+
+    background-size:40px 40px;
+
+    animation:gridMove 10s linear infinite;
+}
+
+@keyframes gridMove{
+
+    from{
+        transform:translateY(0px);
+    }
+
+    to{
+        transform:translateY(40px);
+    }
+}
+
+/* personaje */
+
+#character{
+
+    width:260px;
+
+    position:relative;
+
+    z-index:2;
+
+    filter:
+    drop-shadow(0 0 20px rgba(255,255,255,0.15));
+}
+
+/* partículas */
+
+.particle{
+
+    position:absolute;
+
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:white;
+
+    opacity:0.7;
+
+    pointer-events:none;
+
+    animation:
+    float 4s linear forwards;
+}
+
+@keyframes float{
+
+    0%{
+        transform:
+        translateY(0px)
+        scale(1);
+
+        opacity:1;
+    }
+
+    100%{
+        transform:
+        translateY(-300px)
+        scale(0);
+
+        opacity:0;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<svg
+id="character"
+viewBox="0 0 300 500">
+
+<!-- grupo completo -->
+
+<g id="charGroup">
+
+    <!-- piernas -->
+
+    <ellipse
+    cx="115"
+    cy="430"
+    rx="35"
+    ry="50"
+    fill="#4f5666"/>
+
+    <ellipse
+    cx="185"
+    cy="430"
+    rx="35"
+    ry="50"
+    fill="#4f5666"/>
+
+    <!-- cuerpo -->
+
+    <ellipse
+    cx="150"
+    cy="270"
+    rx="90"
+    ry="120"
+    fill="#596275"/>
+
+    <!-- pecho -->
+
+    <ellipse
+    cx="150"
+    cy="305"
+    rx="48"
+    ry="58"
+    fill="#d9dde5"/>
+
+    <!-- brazo izquierdo -->
+
+    <ellipse
+    id="armL"
+    cx="65"
+    cy="255"
+    rx="28"
+    ry="60"
+    fill="#596275"/>
+
+    <!-- brazo derecho -->
+
+    <ellipse
+    id="armR"
+    cx="235"
+    cy="255"
+    rx="28"
+    ry="60"
+    fill="#596275"/>
+
+    <!-- cabeza -->
+
+    <g id="head">
+
+        <!-- cabeza principal -->
+
+        <circle
+        cx="150"
+        cy="120"
+        r="82"
+        fill="#596275"/>
+
+        <!-- orejas -->
+
+        <ellipse
+        cx="95"
+        cy="75"
+        rx="25"
+        ry="32"
+        fill="#4f5666"/>
+
+        <ellipse
+        cx="205"
+        cy="75"
+        rx="25"
+        ry="32"
+        fill="#4f5666"/>
+
+        <!-- ojos -->
+
+        <ellipse
+        cx="125"
+        cy="120"
+        rx="9"
+        ry="12"
+        fill="#111"/>
+
+        <ellipse
+        cx="175"
+        cy="120"
+        rx="9"
+        ry="12"
+        fill="#111"/>
+
+        <!-- brillo -->
+
+        <circle
+        cx="122"
+        cy="116"
+        r="2"
+        fill="white"/>
+
+        <circle
+        cx="172"
+        cy="116"
+        r="2"
+        fill="white"/>
+
+        <!-- hocico -->
+
+        <ellipse
+        cx="150"
+        cy="150"
+        rx="38"
+        ry="25"
+        fill="#d9dde5"/>
+
+        <!-- nariz -->
+
+        <ellipse
+        cx="150"
+        cy="140"
+        rx="10"
+        ry="6"
+        fill="#1a1a1a"/>
+
+        <!-- boca -->
+
+        <path
+        d="
+        M140 155
+        Q150 165
+        160 155
+        "
+        stroke="#1a1a1a"
+        stroke-width="4"
+        fill="none"
+        stroke-linecap="round"/>
+
+    </g>
+
+</g>
+
+</svg>
+
+<script>
+
+const armL =
+document.getElementById("armL");
+
+const armR =
+document.getElementById("armR");
+
+const head =
+document.getElementById("head");
+
+const charGroup =
+document.getElementById("charGroup");
+
+let t = 0;
+
+function animate(){
+
+    t += 0.05;
+
+    // rebote
+
+    const bounce =
+    Math.sin(t*3) * 18;
+
+    // brazos
+
+    const armMove =
+    Math.sin(t*3) * 22;
+
+    // cabeza
+
+    const headTilt =
+    Math.sin(t*2) * 5;
+
+    // cuerpo completo
+
+    charGroup.setAttribute(
+        "transform",
+        `translate(0 ${bounce})`
+    );
+
+    // brazo izquierdo
+
+    armL.setAttribute(
+        "transform",
+        `
+        rotate(
+        ${armMove}
+        65
+        255
+        )
+        `
+    );
+
+    // brazo derecho
+
+    armR.setAttribute(
+        "transform",
+        `
+        rotate(
+        ${-armMove}
+        235
+        255
+        )
+        `
+    );
+
+    // cabeza
+
+    head.setAttribute(
+        "transform",
+        `
+        rotate(
+        ${headTilt}
+        150
+        120
+        )
+        `
+    );
+
+    createParticle();
+
+    requestAnimationFrame(animate);
+}
+
+animate();
+
+
+// partículas
+
+function createParticle(){
+
+    if(Math.random() < 0.15){
+
+        const p =
+        document.createElement("div");
+
+        p.className = "particle";
+
+        p.style.left =
+        Math.random() * innerWidth + "px";
+
+        p.style.top =
+        innerHeight + "px";
+
+        document.body.appendChild(p);
+
+        setTimeout(()=>{
+            p.remove();
+        },4000);
+    }
+}
+
+</script>
+
+</body>
+</html>

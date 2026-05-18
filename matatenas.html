@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Newton-Raphson Calculator</title>
+
+    <link rel="stylesheet" href="matatenas.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.2/math.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+   
+        <h1 class="logo-title">
+            <a href="index.html">
+                <img id="logo"
+                src="indeximg/logonegro.png" alt="">
+            </a>
+            <a href="index.html">Brutal.</a>Math
+        
+        </h1>
+
+    <!-- BOTÓN MENÚ -->
+<img src="indeximg/menunegro.png" id="menu-btn" alt="menu">
+
+<!-- OVERLAY -->
+<div id="overlay" class="overlay"></div>
+
+<!-- SIDEBAR -->
+<div id="sidebar" class="sidebar">
+
+    <audio id="bg-music" loop>
+        <source src="musica/Mii Channel Theme - Wii.mp3" type="audio/mpeg">
+    </audio>
+
+    <h2>Explorar</h2>
+
+    <a href="musicanew.html"> Música</a>
+    <a href="memes.html"> Memes</a>
+    <a href="brainrots.html"> Brainrot</a>
+
+    <hr>
+
+    <div class="switch-container">
+        <span>Modo oscuro</span>
+        <label class="switch">
+            <input type="checkbox" id="darkModeToggle">
+            <span class="slider"></span>
+        </label>
+    </div>
+
+
+
+</div>
+ 
+
+<div class="calculator">
+
+    <h1>Newton-Raphson</h1>
+
+    <div class="screen">
+
+        <input
+            type="text"
+            id="funcion"
+            placeholder="Función f(x)"
+        >
+
+        <div class="derivada-box">
+            Derivada:
+            <span id="derivadaTexto"></span>
+        </div>
+
+    </div>
+
+    <div class="extra-inputs">
+
+        <input
+            type="number"
+            id="x0"
+            placeholder="x₀"
+        >
+
+        <input
+            type="number"
+            id="iteraciones"
+            value="5"
+            placeholder="Iteraciones"
+        >
+
+    </div>
+
+    <div class="buttons">
+
+        <button onclick="agregar('7')">7</button>
+        <button onclick="agregar('8')">8</button>
+        <button onclick="agregar('9')">9</button>
+        <button onclick="agregar('+')">+</button>
+
+        <button onclick="agregar('4')">4</button>
+        <button onclick="agregar('5')">5</button>
+        <button onclick="agregar('6')">6</button>
+        <button onclick="agregar('-')">−</button>
+
+        <button onclick="agregar('1')">1</button>
+        <button onclick="agregar('2')">2</button>
+        <button onclick="agregar('3')">3</button>
+        <button onclick="agregar('*')">×</button>
+
+        <button onclick="agregar('0')">0</button>
+        <button onclick="agregar('.')">.</button>
+        <button onclick="agregar('x')">x</button>
+        <button onclick="agregar('/')">÷</button>
+
+        <button onclick="agregar('^')">^</button>
+        <button onclick="agregar('(')">(</button>
+        <button onclick="agregar(')')">)</button>
+        <button onclick="agregar('sqrt(')">√</button>
+
+        <button onclick="agregar('sin(')">sin</button>
+        <button onclick="agregar('cos(')">cos</button>
+        <button onclick="agregar('tan(')">tan</button>
+        <button onclick="agregar('log(')">log</button>
+
+        <button onclick="agregar('exp(')">exp</button>
+        <button onclick="agregar('pi')">π</button>
+        <button onclick="agregar('e')">e</button>
+        <button onclick="borrar()">⌫</button>
+
+        <button onclick="limpiar()">C</button>
+
+    </div>
+
+    <button
+        class="calcular"
+        onclick="calcularNewton()"
+    >
+        CALCULAR
+    </button>
+
+    <div class="raiz-box">
+
+        Raíz Aproximada:
+        <span id="raizFinal"></span>
+
+    </div>
+
+    <div class="tabla-container">
+
+        <table>
+
+            <thead>
+
+                <tr>
+                    <th>Iteración</th>
+                    <th>xₙ</th>
+                    <th>Error</th>
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaResultados"></tbody>
+
+        </table>
+
+    </div>
+
+    <canvas id="grafica"></canvas>
+
+</div>
+
+<script src="matatenas.js"></script>
+
+</body>
+</html>
