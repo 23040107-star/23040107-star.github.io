@@ -157,12 +157,12 @@ function corregirFuncion(funcion){
     );
 
     funcion = funcion.replace(
-        /(\d)(sin|cos|tan|log|exp|sqrt)/g,
+        /(\d)(sin|cos|tan|log|exp|sqrt|e)/g,
         '$1*$2'
     );
 
     funcion = funcion.replace(
-        /x(sin|cos|tan|log|exp|sqrt)/g,
+        /x(sin|cos|tan|log|exp|sqrt|e)/g,
         'x*$1'
     );
 
