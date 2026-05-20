@@ -70,7 +70,7 @@ body.dark {
 
 /* BOTÓN */
 #menu-btn {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     width: 50px;
@@ -197,7 +197,7 @@ input:checked + .slider::before {
 .calculator{
     width:450px;
     background:#0f172a;
-    border-radius:25px;
+    border-radius:8px;
     padding:25px;
 
     box-shadow:0 0 30px rgba(37,99,235,.5);
@@ -205,10 +205,34 @@ input:checked + .slider::before {
     margin: 40px auto;
 }
 
-h1{
+.calculator h1{
+    display:block;
     text-align:center;
     margin-bottom:20px;
     color:#39669c;
+}
+
+.mode-switch{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:8px;
+    margin-bottom:15px;
+}
+
+.mode-btn{
+    background:#111827;
+    border:1px solid #334155;
+    border-radius:8px;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    padding:10px;
+}
+
+.mode-btn.active{
+    background:#2563eb;
+    border-color:#60a5fa;
+    box-shadow:0 0 14px rgba(96,165,250,.55);
 }
 
 .screen{
@@ -236,6 +260,10 @@ h1{
     color:#60a5fa;
 }
 
+.raiz-box{
+    margin-top:15px;
+}
+
 .extra-inputs{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -246,16 +274,21 @@ h1{
 .extra-inputs input{
     padding:15px;
     border:none;
-    border-radius:12px;
+    border-radius:8px;
 }
+
+.buttons{
+    display:grid;
+    grid-template-columns:repeat(4, 1fr);
+    gap:10px;
+    margin-top:15px;
+}
+
 .buttons button{
 
     padding:18px;
-    gap: 20px;
     border:none;
-    grid-template-columns:
-    repeat(4, 1fr);
-    border-radius:15px;
+    border-radius:8px;
 
     background:linear-gradient(
         145deg,
@@ -293,11 +326,50 @@ h1{
     transform:scale(0.95);
 }
 
+.wide-btn{
+    grid-column:1 / -1;
+}
+
+.mode-only{
+    display:none;
+}
+
+.mode-only.visible{
+    display:block;
+}
+
+.extra-inputs.mode-only.visible{
+    display:grid;
+}
+
+canvas.mode-only.visible{
+    display:block;
+}
+
+.tabla-container{
+    margin-top:15px;
+    max-height:220px;
+    overflow:auto;
+}
+
+table{
+    border-collapse:collapse;
+    color:white;
+    width:100%;
+}
+
+th,
+td{
+    border-bottom:1px solid #334155;
+    padding:8px;
+    text-align:center;
+}
+
 .calcular{
 
     width:100%;
 
-    margin: top 25px;
+    margin-top:25px;
 
     padding:18px;
 

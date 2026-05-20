@@ -110,7 +110,7 @@ body {
   border-radius: 12px;
   outline: none;
   background: var(--search-bg);
-  color: white;
+  color: var(--text-color);
   margin-bottom: 20px;
 }
 

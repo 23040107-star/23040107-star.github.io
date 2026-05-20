@@ -5,176 +5,138 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Newton-Raphson Calculator</title>
+    <title>Brutal Math Calculator</title>
 
     <link rel="stylesheet" href="matatenas.css">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/12.4.2/math.js"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
 <body>
-   
-        <h1 class="logo-title">
-            <a href="index.html">
-                <img id="logo"
-                src="indeximg/logonegro.png" alt="">
-            </a>
-            <a href="index.html">Brutal.</a>Math
-        
-        </h1>
 
-    <!-- BOTÓN MENÚ -->
-<img src="indeximg/menunegro.png" id="menu-btn" alt="menu">
+    <h1 class="logo-title">
+        <a href="index.html">
+            <img id="logo" src="indeximg/logonegro.png" alt="">
+        </a>
+        <a href="index.html">Brutal.</a>Math
+    </h1>
 
-<!-- OVERLAY -->
-<div id="overlay" class="overlay"></div>
+    <img src="indeximg/menunegro.png" id="menu-btn" alt="menu">
 
-<!-- SIDEBAR -->
-<div id="sidebar" class="sidebar">
+    <div id="overlay" class="overlay"></div>
 
-    <audio id="bg-music" loop>
-        <source src="musica/Mii Channel Theme - Wii.mp3" type="audio/mpeg">
-    </audio>
+    <div id="sidebar" class="sidebar">
 
-    <h2>Explorar</h2>
+        <audio id="bg-music" loop>
+            <source src="musica/Mii Channel Theme - Wii.mp3" type="audio/mpeg">
+        </audio>
 
-    <a href="musicanew.html"> Música</a>
-    <a href="memes.html"> Memes</a>
-    <a href="brainrots.html"> Brainrot</a>
+        <h2>Explorar</h2>
 
-    <hr>
+        <a href="musicanew.html">Musica</a>
+        <a href="memes.html">Memes</a>
+        <a href="brainrots.html">Brainrot</a>
 
-    <div class="switch-container">
-        <span>Modo oscuro</span>
-        <label class="switch">
-            <input type="checkbox" id="darkModeToggle">
-            <span class="slider"></span>
-        </label>
-    </div>
+        <hr>
 
-
-
-</div>
- 
-
-<div class="calculator">
-
-    <h1>Newton-Raphson</h1>
-
-    <div class="screen">
-
-        <input
-            type="text"
-            id="funcion"
-            placeholder="Función f(x)"
-        >
-
-        <div class="derivada-box">
-            Derivada:
-            <span id="derivadaTexto"></span>
+        <div class="switch-container">
+            <span>Modo oscuro</span>
+            <label class="switch">
+                <input type="checkbox" id="darkModeToggle">
+                <span class="slider"></span>
+            </label>
         </div>
 
     </div>
 
-    <div class="extra-inputs">
+    <div class="calculator">
 
-        <input
-            type="number"
-            id="x0"
-            placeholder="x₀"
-        >
+        <h1 id="calculator-title">Calculadora Normal</h1>
 
-        <input
-            type="number"
-            id="iteraciones"
-            value="5"
-            placeholder="Iteraciones"
-        >
+        <div class="mode-switch">
+            <button type="button" class="mode-btn active" data-mode="normal">Normal</button>
+            <button type="button" class="mode-btn" data-mode="newton">Newton-Raphson</button>
+        </div>
 
-    </div>
+        <div class="screen">
+            <input type="text" id="funcion" placeholder="Operacion">
 
-    <div class="buttons">
+            <div class="derivada-box mode-only newton-mode">
+                Derivada:
+                <span id="derivadaTexto"></span>
+            </div>
+        </div>
 
-        <button onclick="agregar('7')">7</button>
-        <button onclick="agregar('8')">8</button>
-        <button onclick="agregar('9')">9</button>
-        <button onclick="agregar('+')">+</button>
+        <div class="extra-inputs mode-only newton-mode">
+            <input type="number" id="x0" placeholder="x0">
+            <input type="number" id="iteraciones" value="5" placeholder="Iteraciones">
+        </div>
 
-        <button onclick="agregar('4')">4</button>
-        <button onclick="agregar('5')">5</button>
-        <button onclick="agregar('6')">6</button>
-        <button onclick="agregar('-')">−</button>
+        <div class="buttons">
+            <button onclick="agregar('7')">7</button>
+            <button onclick="agregar('8')">8</button>
+            <button onclick="agregar('9')">9</button>
+            <button onclick="agregar('+')">+</button>
 
-        <button onclick="agregar('1')">1</button>
-        <button onclick="agregar('2')">2</button>
-        <button onclick="agregar('3')">3</button>
-        <button onclick="agregar('*')">×</button>
+            <button onclick="agregar('4')">4</button>
+            <button onclick="agregar('5')">5</button>
+            <button onclick="agregar('6')">6</button>
+            <button onclick="agregar('-')">-</button>
 
-        <button onclick="agregar('0')">0</button>
-        <button onclick="agregar('.')">.</button>
-        <button onclick="agregar('x')">x</button>
-        <button onclick="agregar('/')">÷</button>
+            <button onclick="agregar('1')">1</button>
+            <button onclick="agregar('2')">2</button>
+            <button onclick="agregar('3')">3</button>
+            <button onclick="agregar('*')">x</button>
 
-        <button onclick="agregar('^')">^</button>
-        <button onclick="agregar('(')">(</button>
-        <button onclick="agregar(')')">)</button>
-        <button onclick="agregar('sqrt(')">√</button>
+            <button onclick="agregar('0')">0</button>
+            <button onclick="agregar('.')">.</button>
+            <button onclick="agregar('x')">var x</button>
+            <button onclick="agregar('/')">/</button>
 
-        <button onclick="agregar('sin(')">sin</button>
-        <button onclick="agregar('cos(')">cos</button>
-        <button onclick="agregar('tan(')">tan</button>
-        <button onclick="agregar('log(')">log</button>
+            <button onclick="agregar('^')">^</button>
+            <button onclick="agregar('(')">(</button>
+            <button onclick="agregar(')')">)</button>
+            <button onclick="agregar('sqrt(')">sqrt</button>
 
-        <button onclick="agregar('exp(')">exp</button>
-        <button onclick="agregar('pi')">π</button>
-        <button onclick="agregar('e')">e</button>
-        <button onclick="borrar()">⌫</button>
+            <button onclick="agregar('sin(')">sin</button>
+            <button onclick="agregar('cos(')">cos</button>
+            <button onclick="agregar('tan(')">tan</button>
+            <button onclick="agregar('log(')">log</button>
 
-        <button onclick="limpiar()">C</button>
+            <button onclick="agregar('exp(')">exp</button>
+            <button onclick="agregar('pi')">pi</button>
+            <button onclick="agregar('e')">e</button>
+            <button onclick="borrar()">Borrar</button>
 
-    </div>
+            <button class="wide-btn" onclick="limpiar()">C</button>
+        </div>
 
-    <button
-        class="calcular"
-        onclick="calcularNewton()"
-    >
-        CALCULAR
-    </button>
+        <button class="calcular" id="calcularBtn" onclick="calcular()">CALCULAR</button>
 
-    <div class="raiz-box">
+        <div class="raiz-box">
+            <span id="resultadoLabel">Resultado:</span>
+            <span id="raizFinal"></span>
+        </div>
 
-        Raíz Aproximada:
-        <span id="raizFinal"></span>
+        <div class="tabla-container mode-only newton-mode">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Iteracion</th>
+                        <th>x</th>
+                        <th>Error</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaResultados"></tbody>
+            </table>
+        </div>
 
-    </div>
-
-    <div class="tabla-container">
-
-        <table>
-
-            <thead>
-
-                <tr>
-                    <th>Iteración</th>
-                    <th>xₙ</th>
-                    <th>Error</th>
-                </tr>
-
-            </thead>
-
-            <tbody id="tablaResultados"></tbody>
-
-        </table>
+        <canvas id="grafica" class="mode-only newton-mode"></canvas>
 
     </div>
 
-    <canvas id="grafica"></canvas>
-
-</div>
-
-<script src="matatenas.js"></script>
+    <script src="matatenas.js"></script>
 
 </body>
 </html>

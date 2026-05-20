@@ -4,10 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Pebble Bailando</title>
+<title>5 Pebbles Bailando</title>
 
 <style>
-
 *{
     margin:0;
     padding:0;
@@ -17,388 +16,465 @@
 body{
     overflow:hidden;
     height:100vh;
-
-    display:flex;
-    justify-content:center;
-    align-items:center;
-
     background:
-    radial-gradient(
-        circle at top,
-        #3b4454,
-        #1a1d24,
-        #090a0f
-    );
-
-    font-family:sans-serif;
+    radial-gradient(circle at top,#48566e,#1a1d24 48%,#08090d);
+    font-family:Arial, sans-serif;
 }
 
-
-
 body::before{
-
     content:"";
-
     position:absolute;
     inset:0;
-
     background:
-    linear-gradient(
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px
-    ),
-    linear-gradient(
-        90deg,
-        rgba(255,255,255,0.03) 1px,
-        transparent 1px
-    );
-
+    linear-gradient(rgba(255,255,255,0.035) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.035) 1px,transparent 1px);
     background-size:40px 40px;
-
     animation:gridMove 10s linear infinite;
 }
 
+body::after{
+    content:"";
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    height:34vh;
+    background:
+    radial-gradient(ellipse at center,rgba(99,102,241,.35),transparent 55%),
+    linear-gradient(to top,rgba(0,0,0,.5),transparent);
+    pointer-events:none;
+}
+
 @keyframes gridMove{
-
-    from{
-        transform:translateY(0px);
-    }
-
-    to{
-        transform:translateY(40px);
-    }
+    from{ transform:translateY(0); }
+    to{ transform:translateY(40px); }
 }
 
-/* personaje */
-
-#character{
-
-    width:260px;
-
+.stage{
+    align-items:flex-end;
+    display:flex;
+    gap:clamp(10px,2vw,26px);
+    height:100vh;
+    justify-content:center;
+    padding:0 22px 9vh;
     position:relative;
-
     z-index:2;
-
-    filter:
-    drop-shadow(0 0 20px rgba(255,255,255,0.15));
 }
 
-/* partículas */
+.pebble{
+    filter:drop-shadow(0 18px 20px rgba(0,0,0,.38));
+    transform-origin:50% 92%;
+    width:clamp(118px,16vw,218px);
+}
+
+.dancer-card{
+    align-items:flex-end;
+    display:flex;
+    justify-content:center;
+    position:relative;
+}
+
+.dancer-card:nth-child(1) .pebble{
+    --fur:#596275;
+    --dark:#454d5d;
+    --belly:#d9dde5;
+    animation:danceOne 1s ease-in-out infinite;
+}
+
+.dancer-card:nth-child(2) .pebble{
+    --fur:#6a5f7a;
+    --dark:#554b62;
+    --belly:#e8dff0;
+    animation:danceTwo .92s ease-in-out infinite;
+    width:clamp(130px,17vw,230px);
+}
+
+.dancer-card:nth-child(3) .pebble{
+    --fur:#5f7561;
+    --dark:#4b5f4d;
+    --belly:#dbe8d8;
+    animation:danceThree .86s ease-in-out infinite;
+    width:clamp(145px,18vw,248px);
+}
+
+.dancer-card:nth-child(4) .pebble{
+    --fur:#75645b;
+    --dark:#5e4e47;
+    --belly:#eaded6;
+    animation:danceTwo .98s ease-in-out infinite reverse;
+    width:clamp(130px,17vw,230px);
+}
+
+.dancer-card:nth-child(5) .pebble{
+    --fur:#596b7a;
+    --dark:#455766;
+    --belly:#dce7ef;
+    animation:danceOne .9s ease-in-out infinite reverse;
+}
+
+.pebble:nth-child(1){
+    --fur:#596275;
+    --dark:#454d5d;
+    --belly:#d9dde5;
+    animation:danceOne 1s ease-in-out infinite;
+}
+
+.pebble:nth-child(2){
+    --fur:#6a5f7a;
+    --dark:#554b62;
+    --belly:#e8dff0;
+    animation:danceTwo .92s ease-in-out infinite;
+    width:clamp(130px,17vw,230px);
+}
+
+.pebble:nth-child(3){
+    --fur:#5f7561;
+    --dark:#4b5f4d;
+    --belly:#dbe8d8;
+    animation:danceThree .86s ease-in-out infinite;
+    width:clamp(145px,18vw,248px);
+}
+
+.pebble:nth-child(4){
+    --fur:#75645b;
+    --dark:#5e4e47;
+    --belly:#eaded6;
+    animation:danceTwo .98s ease-in-out infinite reverse;
+    width:clamp(130px,17vw,230px);
+}
+
+.pebble:nth-child(5){
+    --fur:#596b7a;
+    --dark:#455766;
+    --belly:#dce7ef;
+    animation:danceOne .9s ease-in-out infinite reverse;
+}
+
+.profile-card{
+    align-items:center;
+    background:rgba(9,10,15,.92);
+    border:1px solid rgba(255,255,255,.22);
+    border-radius:8px;
+    box-shadow:0 18px 40px rgba(0,0,0,.45);
+    color:white;
+    display:flex;
+    gap:10px;
+    left:50%;
+    min-width:230px;
+    opacity:0;
+    padding:10px;
+    pointer-events:none;
+    position:absolute;
+    top:-105px;
+    transform:translate(-50%,16px) scale(.96);
+    transition:.22s ease;
+    z-index:5;
+}
+
+.profile-card img{
+    border-radius:8px;
+    height:68px;
+    object-fit:cover;
+    width:68px;
+}
+
+.profile-card strong{
+    display:block;
+    font-size:13px;
+    line-height:1.2;
+}
+
+.profile-card span{
+    color:#cbd5e1;
+    display:block;
+    font-size:12px;
+    margin-top:5px;
+}
+
+.dancer-card:hover .profile-card{
+    opacity:1;
+    transform:translate(-50%,0) scale(1);
+}
+
+.char-group{
+    animation:bodyBounce .7s ease-in-out infinite;
+}
+
+.arm-left{
+    transform-box:fill-box;
+    transform-origin:70% 22%;
+    animation:leftArm .7s ease-in-out infinite;
+}
+
+.arm-right{
+    transform-box:fill-box;
+    transform-origin:30% 22%;
+    animation:rightArm .7s ease-in-out infinite;
+}
+
+.head{
+    transform-box:fill-box;
+    transform-origin:50% 58%;
+    animation:headBob .9s ease-in-out infinite;
+}
+
+.pebble:nth-child(even) .char-group,
+.pebble:nth-child(even) .arm-left,
+.pebble:nth-child(even) .arm-right,
+.pebble:nth-child(even) .head{
+    animation-delay:-.25s;
+}
+
+@keyframes danceOne{
+    0%,100%{ transform:translateY(0) rotate(-5deg); }
+    50%{ transform:translateY(-24px) rotate(7deg); }
+}
+
+@keyframes danceTwo{
+    0%,100%{ transform:translateY(-8px) rotate(6deg); }
+    50%{ transform:translateY(-34px) rotate(-6deg); }
+}
+
+@keyframes danceThree{
+    0%,100%{ transform:translateY(0) scale(1); }
+    50%{ transform:translateY(-30px) scale(1.04); }
+}
+
+@keyframes bodyBounce{
+    0%,100%{ transform:translateY(8px); }
+    50%{ transform:translateY(-12px); }
+}
+
+@keyframes leftArm{
+    0%,100%{ transform:rotate(24deg); }
+    50%{ transform:rotate(-32deg); }
+}
+
+@keyframes rightArm{
+    0%,100%{ transform:rotate(-24deg); }
+    50%{ transform:rotate(32deg); }
+}
+
+@keyframes headBob{
+    0%,100%{ transform:rotate(-5deg); }
+    50%{ transform:rotate(6deg); }
+}
 
 .particle{
-
     position:absolute;
-
     width:6px;
     height:6px;
-
     border-radius:50%;
-
     background:white;
-
-    opacity:0.7;
-
+    opacity:.75;
     pointer-events:none;
-
-    animation:
-    float 4s linear forwards;
+    animation:float 4s linear forwards;
 }
 
 @keyframes float{
-
-    0%{
-        transform:
-        translateY(0px)
-        scale(1);
-
-        opacity:1;
-    }
-
-    100%{
-        transform:
-        translateY(-300px)
-        scale(0);
-
-        opacity:0;
-    }
+    0%{ transform:translateY(0) scale(1); opacity:1; }
+    100%{ transform:translateY(-320px) scale(0); opacity:0; }
 }
 
+@media(max-width:760px){
+    .stage{
+        gap:4px;
+        padding:0 8px 12vh;
+    }
+
+    .pebble{
+        width:19vw;
+    }
+}
 </style>
 </head>
 
 <body>
 
-<svg
-id="character"
-viewBox="0 0 300 500">
+<main class="stage" aria-label="Cinco pebbles bailando">
+    <svg class="pebble" viewBox="0 0 300 500" aria-hidden="true">
+        <g class="char-group">
+            <ellipse cx="115" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="185" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="150" cy="270" rx="90" ry="120" fill="var(--fur)"/>
+            <ellipse cx="150" cy="305" rx="48" ry="58" fill="var(--belly)"/>
+            <ellipse class="arm-left" cx="65" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <ellipse class="arm-right" cx="235" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <g class="head">
+                <circle cx="150" cy="120" r="82" fill="var(--fur)"/>
+                <ellipse cx="95" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="205" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="125" cy="120" rx="9" ry="12" fill="#111"/>
+                <ellipse cx="175" cy="120" rx="9" ry="12" fill="#111"/>
+                <circle cx="122" cy="116" r="2" fill="white"/>
+                <circle cx="172" cy="116" r="2" fill="white"/>
+                <ellipse cx="150" cy="150" rx="38" ry="25" fill="var(--belly)"/>
+                <ellipse cx="150" cy="140" rx="10" ry="6" fill="#1a1a1a"/>
+                <path d="M140 155 Q150 166 160 155" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+        </g>
+    </svg>
 
-<!-- grupo completo -->
+    <svg class="pebble" viewBox="0 0 300 500" aria-hidden="true">
+        <g class="char-group">
+            <ellipse cx="115" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="185" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="150" cy="270" rx="90" ry="120" fill="var(--fur)"/>
+            <ellipse cx="150" cy="305" rx="48" ry="58" fill="var(--belly)"/>
+            <ellipse class="arm-left" cx="65" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <ellipse class="arm-right" cx="235" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <g class="head">
+                <circle cx="150" cy="120" r="82" fill="var(--fur)"/>
+                <ellipse cx="95" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="205" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="125" cy="120" rx="9" ry="12" fill="#111"/>
+                <ellipse cx="175" cy="120" rx="9" ry="12" fill="#111"/>
+                <circle cx="122" cy="116" r="2" fill="white"/>
+                <circle cx="172" cy="116" r="2" fill="white"/>
+                <ellipse cx="150" cy="150" rx="38" ry="25" fill="var(--belly)"/>
+                <ellipse cx="150" cy="140" rx="10" ry="6" fill="#1a1a1a"/>
+                <path d="M140 155 Q150 166 160 155" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+        </g>
+    </svg>
 
-<g id="charGroup">
+    <svg class="pebble" viewBox="0 0 300 500" aria-hidden="true">
+        <g class="char-group">
+            <ellipse cx="115" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="185" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="150" cy="270" rx="90" ry="120" fill="var(--fur)"/>
+            <ellipse cx="150" cy="305" rx="48" ry="58" fill="var(--belly)"/>
+            <ellipse class="arm-left" cx="65" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <ellipse class="arm-right" cx="235" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <g class="head">
+                <circle cx="150" cy="120" r="82" fill="var(--fur)"/>
+                <ellipse cx="95" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="205" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="125" cy="120" rx="9" ry="12" fill="#111"/>
+                <ellipse cx="175" cy="120" rx="9" ry="12" fill="#111"/>
+                <circle cx="122" cy="116" r="2" fill="white"/>
+                <circle cx="172" cy="116" r="2" fill="white"/>
+                <ellipse cx="150" cy="150" rx="38" ry="25" fill="var(--belly)"/>
+                <ellipse cx="150" cy="140" rx="10" ry="6" fill="#1a1a1a"/>
+                <path d="M140 155 Q150 166 160 155" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+        </g>
+    </svg>
 
-    <!-- piernas -->
+    <svg class="pebble" viewBox="0 0 300 500" aria-hidden="true">
+        <g class="char-group">
+            <ellipse cx="115" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="185" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="150" cy="270" rx="90" ry="120" fill="var(--fur)"/>
+            <ellipse cx="150" cy="305" rx="48" ry="58" fill="var(--belly)"/>
+            <ellipse class="arm-left" cx="65" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <ellipse class="arm-right" cx="235" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <g class="head">
+                <circle cx="150" cy="120" r="82" fill="var(--fur)"/>
+                <ellipse cx="95" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="205" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="125" cy="120" rx="9" ry="12" fill="#111"/>
+                <ellipse cx="175" cy="120" rx="9" ry="12" fill="#111"/>
+                <circle cx="122" cy="116" r="2" fill="white"/>
+                <circle cx="172" cy="116" r="2" fill="white"/>
+                <ellipse cx="150" cy="150" rx="38" ry="25" fill="var(--belly)"/>
+                <ellipse cx="150" cy="140" rx="10" ry="6" fill="#1a1a1a"/>
+                <path d="M140 155 Q150 166 160 155" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+        </g>
+    </svg>
 
-    <ellipse
-    cx="115"
-    cy="430"
-    rx="35"
-    ry="50"
-    fill="#4f5666"/>
-
-    <ellipse
-    cx="185"
-    cy="430"
-    rx="35"
-    ry="50"
-    fill="#4f5666"/>
-
-    <!-- cuerpo -->
-
-    <ellipse
-    cx="150"
-    cy="270"
-    rx="90"
-    ry="120"
-    fill="#596275"/>
-
-    <!-- pecho -->
-
-    <ellipse
-    cx="150"
-    cy="305"
-    rx="48"
-    ry="58"
-    fill="#d9dde5"/>
-
-    <!-- brazo izquierdo -->
-
-    <ellipse
-    id="armL"
-    cx="65"
-    cy="255"
-    rx="28"
-    ry="60"
-    fill="#596275"/>
-
-    <!-- brazo derecho -->
-
-    <ellipse
-    id="armR"
-    cx="235"
-    cy="255"
-    rx="28"
-    ry="60"
-    fill="#596275"/>
-
-    <!-- cabeza -->
-
-    <g id="head">
-
-        <!-- cabeza principal -->
-
-        <circle
-        cx="150"
-        cy="120"
-        r="82"
-        fill="#596275"/>
-
-        <!-- orejas -->
-
-        <ellipse
-        cx="95"
-        cy="75"
-        rx="25"
-        ry="32"
-        fill="#4f5666"/>
-
-        <ellipse
-        cx="205"
-        cy="75"
-        rx="25"
-        ry="32"
-        fill="#4f5666"/>
-
-        <!-- ojos -->
-
-        <ellipse
-        cx="125"
-        cy="120"
-        rx="9"
-        ry="12"
-        fill="#111"/>
-
-        <ellipse
-        cx="175"
-        cy="120"
-        rx="9"
-        ry="12"
-        fill="#111"/>
-
-        <!-- brillo -->
-
-        <circle
-        cx="122"
-        cy="116"
-        r="2"
-        fill="white"/>
-
-        <circle
-        cx="172"
-        cy="116"
-        r="2"
-        fill="white"/>
-
-        <!-- hocico -->
-
-        <ellipse
-        cx="150"
-        cy="150"
-        rx="38"
-        ry="25"
-        fill="#d9dde5"/>
-
-        <!-- nariz -->
-
-        <ellipse
-        cx="150"
-        cy="140"
-        rx="10"
-        ry="6"
-        fill="#1a1a1a"/>
-
-        <!-- boca -->
-
-        <path
-        d="
-        M140 155
-        Q150 165
-        160 155
-        "
-        stroke="#1a1a1a"
-        stroke-width="4"
-        fill="none"
-        stroke-linecap="round"/>
-
-    </g>
-
-</g>
-
-</svg>
+    <svg class="pebble" viewBox="0 0 300 500" aria-hidden="true">
+        <g class="char-group">
+            <ellipse cx="115" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="185" cy="430" rx="35" ry="50" fill="var(--dark)"/>
+            <ellipse cx="150" cy="270" rx="90" ry="120" fill="var(--fur)"/>
+            <ellipse cx="150" cy="305" rx="48" ry="58" fill="var(--belly)"/>
+            <ellipse class="arm-left" cx="65" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <ellipse class="arm-right" cx="235" cy="255" rx="28" ry="60" fill="var(--fur)"/>
+            <g class="head">
+                <circle cx="150" cy="120" r="82" fill="var(--fur)"/>
+                <ellipse cx="95" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="205" cy="75" rx="25" ry="32" fill="var(--dark)"/>
+                <ellipse cx="125" cy="120" rx="9" ry="12" fill="#111"/>
+                <ellipse cx="175" cy="120" rx="9" ry="12" fill="#111"/>
+                <circle cx="122" cy="116" r="2" fill="white"/>
+                <circle cx="172" cy="116" r="2" fill="white"/>
+                <ellipse cx="150" cy="150" rx="38" ry="25" fill="var(--belly)"/>
+                <ellipse cx="150" cy="140" rx="10" ry="6" fill="#1a1a1a"/>
+                <path d="M140 155 Q150 166 160 155" stroke="#1a1a1a" stroke-width="4" fill="none" stroke-linecap="round"/>
+            </g>
+        </g>
+    </svg>
+</main>
 
 <script>
+const colaboradores = [
+    {
+        foto: "indeximg/img2.png",
+        nombre: "Cristofer David Acosta Martinez",
+        matricula: "23040186"
+    },
+    {
+        foto: "indeximg/img5.png",
+        nombre: "Ian Eduardo Luna Ibarra",
+        matricula: "23040577"
+    },
+    {
+        foto: "indeximg/img3.png",
+        nombre: "Hernando Calderon Serna",
+        matricula: "23040096"
+    },
+    {
+        foto: "indeximg/img1.png",
+        nombre: "David Alejandro Lara Castro",
+        matricula: "23040106"
+    },
+    {
+        foto: "indeximg/img6.png",
+        nombre: "Sebastian Legarda Valenzuela",
+        matricula: "23040107"
+    }
+];
 
-const armL =
-document.getElementById("armL");
+document.querySelectorAll(".stage > .pebble").forEach((pebble, index) => {
+    const colaborador = colaboradores[index];
+    const card = document.createElement("div");
 
-const armR =
-document.getElementById("armR");
+    card.className = "dancer-card";
+    pebble.parentNode.insertBefore(card, pebble);
+    card.appendChild(pebble);
 
-const head =
-document.getElementById("head");
-
-const charGroup =
-document.getElementById("charGroup");
-
-let t = 0;
-
-function animate(){
-
-    t += 0.05;
-
-    // rebote
-
-    const bounce =
-    Math.sin(t*3) * 18;
-
-    // brazos
-
-    const armMove =
-    Math.sin(t*3) * 22;
-
-    // cabeza
-
-    const headTilt =
-    Math.sin(t*2) * 5;
-
-    // cuerpo completo
-
-    charGroup.setAttribute(
-        "transform",
-        `translate(0 ${bounce})`
-    );
-
-    // brazo izquierdo
-
-    armL.setAttribute(
-        "transform",
-        `
-        rotate(
-        ${armMove}
-        65
-        255
-        )
-        `
-    );
-
-    // brazo derecho
-
-    armR.setAttribute(
-        "transform",
-        `
-        rotate(
-        ${-armMove}
-        235
-        255
-        )
-        `
-    );
-
-    // cabeza
-
-    head.setAttribute(
-        "transform",
-        `
-        rotate(
-        ${headTilt}
-        150
-        120
-        )
-        `
-    );
-
-    createParticle();
-
-    requestAnimationFrame(animate);
-}
-
-animate();
-
-
-// partículas
+    card.insertAdjacentHTML("beforeend", `
+        <div class="profile-card">
+            <img src="${colaborador.foto}" alt="${colaborador.nombre}">
+            <div>
+                <strong>${colaborador.nombre}</strong>
+                <span>Matricula: ${colaborador.matricula}</span>
+            </div>
+        </div>
+    `);
+});
 
 function createParticle(){
-
-    if(Math.random() < 0.15){
-
-        const p =
-        document.createElement("div");
+    if(Math.random() < 0.22){
+        const p = document.createElement("div");
+        const colors = ["#ffffff","#93c5fd","#c4b5fd","#f9a8d4","#bbf7d0"];
 
         p.className = "particle";
-
-        p.style.left =
-        Math.random() * innerWidth + "px";
-
-        p.style.top =
-        innerHeight + "px";
+        p.style.left = Math.random() * innerWidth + "px";
+        p.style.top = innerHeight + "px";
+        p.style.background = colors[Math.floor(Math.random() * colors.length)];
 
         document.body.appendChild(p);
 
-        setTimeout(()=>{
+        setTimeout(() => {
             p.remove();
-        },4000);
+        }, 4000);
     }
 }
 
+setInterval(createParticle, 55);
 </script>
 
 </body>

@@ -74,9 +74,12 @@ window.addEventListener("DOMContentLoaded", () => {
     toggle.checked = true;
     logo.src = "indeximg/logoblanco.png";
     btn.src = "indeximg/menublanco.png";
+    cover.src ="indeximg/BRUTALdiscblanco.png";
+    
   } else {
     logo.src = "indeximg/logonegro.png";
     btn.src = "indeximg/menunegro.png";
+    cover.src ="indeximg/BRUTALdicnegro.png";
   }
   const savedVolume = localStorage.getItem("volume");
 
@@ -115,7 +118,7 @@ toggle.addEventListener("change", () => {
     localStorage.setItem("darkMode", "off");
     logo.src = "indeximg/logonegro.png";
     btn.src = "indeximg/menunegro.png";
-        cover.src ="indeximg/BRUTALdiscnegro.png";
+        cover.src ="indeximg/BRUTALdicnegro.png";
   }
 });
 
@@ -226,8 +229,10 @@ loadFolderBtn.addEventListener("click", async () => {
 
       if (file.type.startsWith("audio/")) {
         songs.push({
+          id:songs.length,
           name: file.name,
           file: file,
+
         });
       }
     }
@@ -238,7 +243,7 @@ loadFolderBtn.addEventListener("click", async () => {
 function renderSongs(songArray) {
   songList.innerHTML = "";
 
-  songArray.forEach((song, index) => {
+  songArray.forEach((song) => {
     const div = document.createElement("div");
 
     div.classList.add("song");
@@ -246,7 +251,7 @@ function renderSongs(songArray) {
     div.textContent = song.name;
 
     div.addEventListener("click", () => {
-      currentIndex = index;
+      currentIndex = song.id;
 
       loadSong(currentIndex);
 
@@ -501,6 +506,7 @@ async function loadSavedFolder() {
 
         if (file.type.startsWith("audio/")) {
           songs.push({
+            id:songs.length,
             name: file.name,
             file: file,
           });

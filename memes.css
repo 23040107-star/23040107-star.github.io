@@ -47,7 +47,7 @@ body.dark {
 
 /* BOTÓN */
 #menu-btn {
-    position: fixed;
+    position: absolute;
     top: 20px;
     right: 20px;
     width: 50px;
@@ -210,4 +210,53 @@ h1 {
 .modal img {
     max-width: 90%;
     max-height: 90%;
+}
+
+/* Feed vertical tipo Instagram */
+body {
+    margin: 0;
+}
+
+.feed {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    margin: 0 auto;
+    max-width: 680px;
+    padding: 10px 16px 48px;
+}
+
+.post {
+    background: var(--card-bg);
+    border: 1px solid rgba(0,0,0,0.16);
+    border-radius: 8px;
+    box-shadow: 0 12px 28px rgba(0,0,0,0.22);
+    overflow: hidden;
+    width: 100%;
+}
+
+body.dark .post {
+    border-color: rgba(255,255,255,0.14);
+}
+
+.post img {
+    background: #000;
+    cursor: pointer;
+    display: block;
+    max-height: 82vh;
+    object-fit: contain;
+    width: 100%;
+}
+
+.modal {
+    z-index: 1200;
+}
+
+@media (max-width: 720px) {
+    .feed {
+        max-width: 100%;
+        padding: 4px 10px 36px;
+    }
+
 }
